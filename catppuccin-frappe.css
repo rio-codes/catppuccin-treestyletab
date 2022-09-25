@@ -1,0 +1,167 @@
+:root {
+  --colorA: #626880; /* active tab(s) : frappe surface2 */
+  --colorB: #ea999c; /* hovered tab : frappe maroon */
+  --colorC: #838ba7; /* scrollbar : frappe overlay1 */
+  --colorD: #c6d0f5; /* child tab counter : frappe text */
+  --colorE: #303446; /* tab background : frappe base */
+  --colorF: #85c1dc; /* sound indicator icon : frappe sapphire */
+  --colorG: #414559; /* new tab button : frappe surface0 */
+  --colorH: #232634; /* background below new tab button + indent : frappe crust */
+  --colorI: #626880; /* on drag select tabs (for Multiple Tab Handler extension) : frappe surface2 */
+  --tab-height: 35px; 
+  --font-size: 16px; 
+}
+
+/* the x on each tab */
+:root.simulate-svg-context-fill .closebox::after {
+  background: #c6d0f5; /* frappe text */
+}
+
+/* sound indicator */
+:root.simulate-svg-context-fill .sound-button::after {
+  background: var(--colorF);
+}
+
+/* set x and sound indicator color when tab is active, highlighted, drag-select or hovered */
+:root.simulate-svg-context-fill .tab.highlighted .closebox::after,
+:root.simulate-svg-context-fill .tab.mth-ready-to-select .closebox::after,
+:root.simulate-svg-context-fill .tab.active .closebox::after,
+:root.simulate-svg-context-fill .tab:hover .closebox::after,
+:root.simulate-svg-context-fill .tab.highlighted .sound-button::after,
+:root.simulate-svg-context-fill .tab.mth-ready-to-select .sound-button::after,
+:root.simulate-svg-context-fill .tab.active .sound-button::after,
+:root.simulate-svg-context-fill .tab:hover .sound-button::after {
+  background: #232634; /* frappe crust */
+}
+
+/* indented area before tab */
+tab-item .extra-items-container.indent {
+  background-color: #303446; /* base */
+}
+
+/* tab container, opened tabs */
+.tab {
+  background-color: var(--colorE); 
+  height: var(--tab-height);
+}
+
+/* tab contents */
+.label {
+  margin-top: -2px;
+  margin-left: 2px;
+  font-size: var(--font-size);
+  color: #c6d0f5; /* frappe text */
+  line-height: var(--tab-height);
+}
+
+/* number of tab children */
+.tab .counter {
+  margin-top: -3px;
+  color: var(--colorD);
+}
+
+/* unloaded tab */
+.tab.discarded {
+  background-color: #303446; /* frappe base */
+}
+
+/* active tab(s) text + during drag selection (for Multiple Tab Handler extension) */
+.tab.active .label,
+.tab.highlighted .label,
+.tab.mth-ready-to-select .label {
+  color: #c6d0f5; /* frappe text */
+}
+
+/* active tab(s), whole area */
+.tab.active,
+.tab.highlighted {
+  background-color: var(--colorA);
+}
+
+/* tabs during drag selecting tabs (for Multiple Tab Handler extension) */
+.tab.mth-ready-to-select {
+  background-color: var(--colorI); 
+}
+
+/* hovered tab, text */
+.tab:hover .label {
+  color: #292c3c; /* frappe mantle */
+}
+
+/* hovered tab, whole line */
+.tab:hover, .tab:not(.active):hover {
+  background-color: var(--colorB);
+}
+
+/* hide hidden tabs (it some times displays white area on larger tab sizes if this is not set) */
+tab-item.collapsed {
+  display: none; 
+}
+
+/* drop tab location */
+tab-item[data-drop-position="self"] tab-item-substance {
+  outline-color: #737994 !important; /* border around text : frappe overlay0 */
+  background-color: #949cbb;         /* drop tab : frappe overlay2 */
+}
+
+/* drop tab location label */
+tab-item[data-drop-position="self"] tab-item-substance .label {
+ color: #292c3c; /* frappe mantle */
+}
+
+/* drop tab location line after/before tab */
+tab-item[data-drop-position]:not([data-drop-position="self"]) tab-item-substance::before {
+  background-color:white !important;
+}
+
+/* open/close tree chevron on tab move */
+tab-item:not(.collapsed):not(.subtree-collapsed) tab-twisty {
+  color: white !important;
+}
+
+/* open/close tree chevron on the left of the tab*/
+tab-twisty::before {
+  background-color: #c6d0f5 !important; /* frappe text */
+}
+
+/* active/hovered/drag-select tabs tree chevron */
+.tab:hover tab-twisty::before,
+.tab.active tab-twisty::before,
+.tab.highlighted tab-twisty::before,
+.tab.mth-ready-to-select tab-twisty::before {
+  background-color: #292c3c !important; /* frappe mantle */
+}
+
+/* scrollbar */
+#tabbar {
+  scrollbar-color: var(--colorC) rgba(0,0,0,0.8);
+}
+
+/* new tab button */
+:root.simulate-svg-context-fill .newtab-button {
+  background-color: var(--colorG);
+  border-top: 1px solid rgba(0,0,0,0.2);
+  line-height: 20px;
+}
+
+/* new tab button hover */
+:root.simulate-svg-context-fill .newtab-button:hover {
+  background-color: #949cbb !important; /* frappe overlay2 */
+}
+
+/* new tab plus sign */
+:root.simulate-svg-context-fill .newtab-button::after {
+  background-color: #292c3c; /* frappe mantle */
+  vertical-align: middle;
+  margin-top: -3px;
+}
+
+/* new tab plus sign on hover */
+:root.simulate-svg-context-fill .newtab-button:hover.newtab-button::after {
+  background-color: #292c3c;  /* frappe mantle */
+}
+
+/* background under new tab button */
+#background {
+  background: var(--colorH); 
+}
